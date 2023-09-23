@@ -3,7 +3,9 @@ import cheerio from "cheerio";
 import fs from "fs/promises"; // Use async file operations
 import {ScrapedProduct} from "../model/productModel.js";
 
+export const NameScrapedDataUrl1 = [];
 export const Scrapdata = {
+
     async searchProduct(req, res) {
         const searchItem = req.body.productName;
         console.log("searchItem " , searchItem);
@@ -39,6 +41,7 @@ export const Scrapdata = {
                 };
 
                 ScrapedDataUrl1.push(scrapproductData);
+                NameScrapedDataUrl1.push(scrapproductData.Product_name);
 
                 // Create product record in the database
                 ScrapedProduct.create(scrapproductData).then((doc) => {
@@ -52,6 +55,7 @@ export const Scrapdata = {
 
             // Write to a JSON file asynchronously
             await fs.writeFile('./data/data1.json', JSON.stringify(ScrapedDataUrl1));
+            await fs.writeFile('./data/list1.json', JSON.stringify(NameScrapedDataUrl1));
 
             res.json({ message: "products are ", record: ScrapedDataUrl1 });
         } catch (err) {
