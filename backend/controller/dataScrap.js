@@ -3,11 +3,11 @@ import cheerio from "cheerio";
 import fs from "fs/promises"; // Use async file operations
 import {ScrapedProduct} from "../model/productModel.js";
 
-const searchItem = 'mobile';
-const url1 = `https://www.flipkart.com/search?q=${searchItem}&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off`;
-
 export const Scrapdata = {
     async searchProduct(req, res) {
+        const searchItem = req.body.productName;
+        console.log("searchItem " , searchItem);
+        const url1 = `https://www.flipkart.com/search?q=${searchItem}&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off`;
         try {
             const response = await request({
                 uri: url1,
