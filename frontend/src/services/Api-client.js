@@ -8,5 +8,14 @@ export const apiclient ={
         catch(err){
             throw err;
         }
-    }
+    },
+    async get(URL){
+        try{
+        const response = await axios.get(URL);
+        return response;
+        }
+        catch(err){
+            throw err;
+        }
+    },
 }

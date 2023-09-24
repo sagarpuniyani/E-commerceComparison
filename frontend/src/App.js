@@ -1,10 +1,16 @@
+import React , {Suspense} from 'react';
 import './App.css';
-import Searchdata from './modules/searchData/pages/Searchdata';
+import { Container } from '@mui/material';
+const  Searchdata =  React.lazy(() => import('./modules/searchData/pages/Searchdata'));
 
 function App() {
   return (
     <>
-    <Searchdata />
+    <Container >
+      <Suspense >
+      <Searchdata />
+      </Suspense>
+    </Container>
     </>
   );
 }

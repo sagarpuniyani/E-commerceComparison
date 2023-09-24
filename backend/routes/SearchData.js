@@ -9,4 +9,4 @@ productDetail.post('/search' ,  Scrapdata.searchProduct)
 
 
 // redirecting to the comparison between the product
-productDetail.post('/compare' , CompareProduct.ComparetheProducts )
+productDetail.get('/compare' , CompareProduct.ComparetheProducts )

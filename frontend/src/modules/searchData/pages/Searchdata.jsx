@@ -11,6 +11,8 @@ import { styled, alpha } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import Button from '@mui/material/Button';
 import { apiclient } from '../../../services/Api-client';
+import Porductcard from '../components/Porductcard';
+import { Grid } from '@mui/material';
 
 /*===================================================================================================================== */
 const ColorButton = styled(Button)(({ theme }) => ({
@@ -65,7 +67,8 @@ const Search = styled('div')(({ theme }) => ({
 /*======================================================================================================================*/
 const Searchdata = () => {
 
-    const [SearchProduct , setSearchProduct] = useState(null);
+    const [SearchProduct , setSearchProduct] = useState([]);
+    const [CompareProduct , setCompareProduct] = useState([]);
     const  productnameRef = useRef();
 
     const HandleSearchOperation = async () => {
@@ -76,12 +79,16 @@ const Searchdata = () => {
         try {
             console.log("ProductInfo = " , ProductInfo);
             const res =  await apiclient.post( "http://localhost:1234/search" , ProductInfo);
+            const compareRes = await apiclient.get("http://localhost:1234/compare" );
+            console.log( "compareRes " , compareRes )
+            setCompareProduct( compareRes.data.record )
+            console.log("CompareProduct " , CompareProduct);
             setSearchProduct(SearchProduct => res.data.record )
             console.log("Res = ", res.data.record);
             console.log("type of Res = ",typeof res.data.record);
         }
         catch(err){
-            console.log("Error ");
+            console.log("Error  in search : " , err);
         }
     }
 
@@ -123,8 +130,38 @@ return (
             </Toolbar>
         </AppBar>
     </Box>
+    <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+    <Grid xs={6}>
+    <p>Flipkart Product</p>
     {Object.keys(SearchProduct).length === 0 && <p>No Data Received</p>}
-    {Object.keys(SearchProduct).length > 0 && <p>Data Received</p>}
+    {Object.keys(SearchProduct).length > 0 &&
+    SearchProduct.map( eachproduct => {
+        return (<Porductcard
+            productName = {eachproduct.Product_name}
+            productDesc= {eachproduct.Product_desc}
+            productprice= {eachproduct.price}
+            productImg = {eachproduct.ImageUrl}
+            productUrl = {eachproduct.Product_Url}
+        /> )
+    })
+    }
+    </Grid>
+    <Grid xs={6}>
+    <p>Amazon Product</p>
+    {Object.keys(CompareProduct).length === 0 && <p>No Data Received</p>}
+    {Object.keys(CompareProduct).length > 0 &&
+    SearchProduct.map( eachproduct => {
+        return (<Porductcard
+            productName = {eachproduct.Product_name}
+            productDesc= {eachproduct.Product_desc}
+            productprice= {eachproduct.price}
+            productImg = {eachproduct.ImageUrl}
+            productUrl = {eachproduct.Product_Url}
+        /> )
+    })
+    }
+    </Grid>
+    </Grid>
     </>
 
 )
