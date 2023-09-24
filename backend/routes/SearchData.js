@@ -1,6 +1,7 @@
 import express from "express";
 import {Scrapdata} from "../controller/dataScrap.js"
-import {CompareProduct} from "../controller/CompareScrapData.js"
+import { SearchScrapdata } from "../controller/CompareData.js";
+
 
 export const productDetail = express.Router();
 
@@ -9,4 +10,5 @@ productDetail.post('/search' ,  Scrapdata.searchProduct)
 
 
 // redirecting to the comparison between the product
-productDetail.get('/compare' , CompareProduct.ComparetheProducts )
+// productDetail.get('/compare' , CompareProduct.ComparetheProducts )
+productDetail.post('/compare' , SearchScrapdata.CompareSearchScrapdata )
