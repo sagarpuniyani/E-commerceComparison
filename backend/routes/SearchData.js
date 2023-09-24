@@ -7,5 +7,6 @@ export const productDetail = express.Router();
 // redirecting to the data 
 productDetail.post('/search' ,  Scrapdata.searchProduct)
 
+
 // redirecting to the comparison between the product
 productDetail.post('/compare' , compareFunction.comparionMethod )

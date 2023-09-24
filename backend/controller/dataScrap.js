@@ -40,8 +40,12 @@ export const Scrapdata = {
                     Product_Url,
                 };
 
+                const NamescrapproductData = {
+                    Product_name
+                }
+
                 ScrapedDataUrl1.push(scrapproductData);
-                NameScrapedDataUrl1.push(scrapproductData.Product_name);
+                NameScrapedDataUrl1.push(NamescrapproductData);
 
                 // Create product record in the database
                 ScrapedProduct.create(scrapproductData).then((doc) => {
