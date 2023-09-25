@@ -30,7 +30,7 @@ export const SearchScrapdata = {
                 const Product_desc = $(' div.sg-col.sg-col-4-of-12.sg-col-8-of-16.sg-col-12-of-20.sg-col-12-of-24.s-list-col-right > div > div > div.sg-row > div.sg-col.sg-col-4-of-12.sg-col-4-of-16.sg-col-4-of-20.sg-col-4-of-24 > div > div:nth-child(2) > div > span').eq(i).text();
                 const price = $('div.a-section.a-spacing-none.a-spacing-top-micro.puis-price-instructions-style > div.a-row.a-size-base.a-color-base > a > span > span.a-offscreen').eq(i).text();
                 const ImageUrl = $('div.s-product-image-container.aok-relative.s-text-center.s-image-overlay-grey.puis-image-overlay-grey.s-padding-left-small.s-padding-right-small.s-flex-expand-height.puis.puis-v20azwp0smsgc01ytmkntf1rk7n > div > span > a > div > img').eq(i).attr('src');
-                const Product_Url = `https://www.flipkart.com` + $('div > div.sg-col.sg-col-4-of-12.sg-col-8-of-16.sg-col-12-of-20.sg-col-12-of-24.s-list-col-right > div > div > div.a-section.a-spacing-none.puis-padding-right-small.s-title-instructions-style > h2 > a').eq(i).attr('href');
+                const Product_Url = `https://www.amazon.in` + $('div > div.sg-col.sg-col-4-of-12.sg-col-8-of-16.sg-col-12-of-20.sg-col-12-of-24.s-list-col-right > div > div > div.a-section.a-spacing-none.puis-padding-right-small.s-title-instructions-style > h2 > a').eq(i).attr('href');
 
                 // Create product record
                 const scrapproductData = {
