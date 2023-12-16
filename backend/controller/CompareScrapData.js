@@ -46,7 +46,7 @@ async function fetchProductData(element) {
 }
 
     export const CompareProduct = {
-    async ComparetheProducts(req, res) {
+    async ComparetheProducts(_, res) {
         try {
         const productName = getProductNames();
         const ScrapedDataUrl2 = [];
